@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "A compact shadcn-style badge for metadata, status, and tags.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "dotto-core",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/badge.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** DottoUI Badge / Tag — small uppercase mono chip with stepped corners. */\nconst badgeVariants = cva(\n  \"inline-flex items-center gap-1.5 pixel-corner px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] w-fit whitespace-nowrap [&_svg]:size-3\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-accent text-accent-foreground\",\n        secondary: \"bg-secondary text-secondary-foreground\",\n        outline: \"text-foreground pixel-bordered\",\n        destructive: \"bg-destructive text-destructive-foreground\",\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  }\n)\n\nfunction Badge({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants>) {\n  return (\n    <span\n      data-slot=\"badge\"\n      className={cn(badgeVariants({ variant, className }))}\n      {...props}\n    />\n  )\n}\n\nexport { Badge, badgeVariants }\n",
+      "type": "registry:ui",
+      "target": "@ui/badge.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

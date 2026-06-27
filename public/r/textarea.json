@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "A native textarea styled with DottoUI pixel borders.",
+  "registryDependencies": [
+    "dotto-core",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/textarea.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Textarea({\n  className,\n  ...props\n}: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"flex min-h-28 w-full resize-y pixel-bordered px-3.5 py-3 font-mono text-sm text-foreground\",\n        \"placeholder:text-muted-foreground placeholder:uppercase placeholder:tracking-[0.06em] placeholder:text-xs\",\n        \"outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:cursor-not-allowed disabled:opacity-45\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n",
+      "type": "registry:ui",
+      "target": "@ui/textarea.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

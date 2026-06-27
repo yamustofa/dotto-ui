@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "description": "A native input styled with DottoUI pixel borders and mono labels.",
+  "registryDependencies": [
+    "dotto-core",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/input.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** DottoUI Input — cream field, 2px navy pixel border, stepped corners. */\nfunction Input({ className, type, ...props }: React.ComponentProps<\"input\">) {\n  return (\n    <input\n      type={type}\n      data-slot=\"input\"\n      className={cn(\n        \"flex h-11 w-full pixel-bordered px-3.5 py-2 font-mono text-sm text-foreground\",\n        \"placeholder:text-muted-foreground placeholder:uppercase placeholder:tracking-[0.06em] placeholder:text-xs\",\n        \"outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:cursor-not-allowed disabled:opacity-45\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\n",
+      "type": "registry:ui",
+      "target": "@ui/input.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

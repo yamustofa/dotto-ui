@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sticky-note",
+  "title": "StickyNote",
+  "description": "A small pixel-bordered note component for crafted callouts.",
+  "registryDependencies": [
+    "dotto-core",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/components/dotto/sticky-note.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type StickyNoteProps = React.HTMLAttributes<HTMLDivElement> & {\n  glyph?: React.ReactNode\n  align?: \"left\" | \"center\" | \"right\"\n}\n\nexport function StickyNote({\n  children,\n  className,\n  glyph,\n  align = \"left\",\n  ...props\n}: StickyNoteProps) {\n  return (\n    <div\n      className={cn(\n        \"inline-block px-4 py-3.5 font-mono text-xs font-bold uppercase leading-relaxed tracking-[0.05em] text-secondary-foreground pixel-bordered pixel-depth [--pf-fill:var(--secondary)]\",\n        className\n      )}\n      style={{ textAlign: align }}\n      {...props}\n    >\n      {children}\n      {glyph ? <span className=\"ml-1.5 inline-block\">{glyph}</span> : null}\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "@components/dotto/sticky-note.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

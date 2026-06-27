@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pixel-glyph",
+  "title": "PixelGlyph",
+  "description": "A tiny pixel motif component drawn with square box shadows.",
+  "registryDependencies": [
+    "dotto-core"
+  ],
+  "files": [
+    {
+      "path": "src/components/dotto/pixel-glyph.tsx",
+      "content": "import * as React from \"react\"\n\ntype PixelGlyphShape = \"sparkle\" | \"heart\" | \"plus\" | \"diamond\" | \"square\"\n\nconst presets: Record<PixelGlyphShape, string[]> = {\n  sparkle: [\"..#..\", \".###.\", \"#####\", \".###.\", \"..#..\"],\n  heart: [\".#.#.\", \"#####\", \"#####\", \".###.\", \"..#..\"],\n  plus: [\"..#..\", \"..#..\", \"#####\", \"..#..\", \"..#..\"],\n  diamond: [\"..#..\", \".###.\", \"#####\", \".###.\", \"..#..\"],\n  square: [\"##\", \"##\"],\n}\n\nexport type PixelGlyphProps = React.HTMLAttributes<HTMLSpanElement> & {\n  shape?: PixelGlyphShape\n  rows?: string[]\n  unit?: number\n  color?: string\n}\n\nexport function PixelGlyph({\n  shape = \"sparkle\",\n  rows,\n  unit = 4,\n  color = \"currentColor\",\n  style,\n  ...props\n}: PixelGlyphProps) {\n  const map = rows ?? presets[shape]\n  const width = Math.max(...map.map((row) => row.length))\n  const shadows: string[] = []\n\n  map.forEach((row, y) => {\n    Array.from(row).forEach((cell, x) => {\n      if (cell !== \".\" && cell !== \" \") {\n        shadows.push(`${x * unit}px ${y * unit}px 0 ${color}`)\n      }\n    })\n  })\n\n  return (\n    <span\n      aria-hidden=\"true\"\n      style={{\n        boxShadow: shadows.join(\",\"),\n        display: \"inline-block\",\n        height: unit,\n        marginBottom: (map.length - 1) * unit,\n        marginRight: (width - 1) * unit,\n        verticalAlign: \"middle\",\n        width: unit,\n        ...style,\n      }}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:component",
+      "target": "@components/dotto/pixel-glyph.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

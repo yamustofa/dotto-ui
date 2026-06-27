@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "A shadcn-compatible card anatomy with DottoUI pixel borders and depth.",
+  "registryDependencies": [
+    "dotto-core",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/card.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * DottoUI Card — cream surface, 2px navy pixel border, stepped corners.\n * Same shadcn anatomy (Card / Header / Title / Description / Content / Footer).\n */\nfunction Card({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card\"\n      className={cn(\n        \"text-card-foreground pixel-bordered pixel-depth flex flex-col gap-4 p-5\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction CardHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-header\"\n      className={cn(\"flex flex-col gap-1.5\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction CardTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-title\"\n      className={cn(\n        \"font-mono text-sm font-bold uppercase tracking-[0.06em] leading-tight\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction CardDescription({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-description\"\n      className={cn(\"font-mono text-sm text-muted-foreground leading-relaxed\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction CardContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-content\" className={cn(className)} {...props} />\n}\n\nfunction CardFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-footer\"\n      className={cn(\"flex items-center gap-3\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }\n",
+      "type": "registry:ui",
+      "target": "@ui/card.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

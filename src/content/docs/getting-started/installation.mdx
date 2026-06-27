@@ -20,7 +20,25 @@ npm run dev
 - **React 19**
 - The DottoUI token + utility stylesheet (see [Pixel utilities](../../foundations/pixel-utilities/))
 
-## Use a component
+## Install from the registry
+
+DottoUI publishes shadcn registry items as static JSON under `/r`.
+
+```bash
+npx shadcn@latest add https://yamustofa.github.io/dotto-ui/r/button.json
+```
+
+For local development, run the docs site and use the local registry URL:
+
+```bash
+npm run dev
+npx shadcn@latest add http://localhost:4321/r/button.json
+```
+
+Each component pulls in its registry dependencies. For example, `button` depends
+on the DottoUI core stylesheet and the shared `cn()` utility.
+
+## Use a component after install
 
 ```tsx
 import { Button } from "@/components/ui/button"
@@ -32,3 +50,14 @@ export function ProjectCta() {
 
 The components depend on a small `cn()` helper (`clsx` + `tailwind-merge`) at
 `@/lib/utils`, and on the design tokens defined in the core stylesheet.
+
+## Registry development
+
+Registry source lives in `registry.json`. Build the static registry files with:
+
+```bash
+npm run registry:build
+```
+
+The generated files are written to `public/r`, so Astro and GitHub Pages can
+serve them directly.

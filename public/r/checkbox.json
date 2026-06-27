@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "A Radix checkbox with DottoUI pixel depth and icon styling.",
+  "dependencies": [
+    "@radix-ui/react-checkbox",
+    "pixelarticons"
+  ],
+  "registryDependencies": [
+    "dotto-core",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/checkbox.tsx",
+      "content": "import * as React from \"react\"\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\"\nimport { Check } from \"pixelarticons/react/Check\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Checkbox({\n  className,\n  ...props\n}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer grid size-5 shrink-0 place-items-center border-2 border-border bg-card text-transparent pixel-corner pixel-shadow-sm\",\n        \"outline-none transition-transform duration-75 ease-[steps(2,end)]\",\n        \"active:translate-x-0.5 active:translate-y-0.5 active:pixel-shadow-none\",\n        \"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:cursor-not-allowed disabled:opacity-45\",\n        \"data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground\",\n        \"data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground\",\n        className\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"grid place-items-center text-current\"\n      >\n        <Check aria-hidden=\"true\" className=\"size-4\" />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  )\n}\n\nexport { Checkbox }\n",
+      "type": "registry:ui",
+      "target": "@ui/checkbox.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

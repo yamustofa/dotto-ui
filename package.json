@@ -8,6 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview --host 0.0.0.0",
     "check": "astro check",
+    "registry:build": "shadcn build",
     "astro": "astro"
   },
   "dependencies": {
@@ -32,6 +33,7 @@
     "@types/node": "^22.15.32",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "shadcn": "^4.12.0",
     "typescript": "^5.8.3"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-tile",
+  "title": "IconTile",
+  "description": "A DottoUI icon container with pixel corners.",
+  "registryDependencies": [
+    "dotto-core",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/components/dotto/icon-tile.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type IconTileProps = React.HTMLAttributes<HTMLDivElement> & {\n  size?: number\n  color?: string\n}\n\nexport function IconTile({\n  children,\n  className,\n  color,\n  size = 56,\n  style,\n  ...props\n}: IconTileProps) {\n  return (\n    <div\n      className={cn(\n        \"grid shrink-0 place-items-center bg-accent text-accent-foreground pixel-corner\",\n        className\n      )}\n      style={{\n        backgroundColor: color,\n        height: size,\n        width: size,\n        ...style,\n      }}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "@components/dotto/icon-tile.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
