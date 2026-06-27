@@ -27,3 +27,6 @@ pnpm-debug.log*
 Thumbs.db
 .idea/
 .vscode/
+
+# astro
+.astro/

@@ -1,0 +1,47 @@
+---
+title: Pixel utilities
+description: The low-pixel language — stepped corners, crisp borders, and hard offset shadows.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+
+The pixel aesthetic comes from a few Tailwind utilities layered onto components.
+They're defined in the DottoUI core stylesheet and work anywhere Tailwind v4 runs.
+
+<Demo>
+  <div class="grid h-20 w-44 place-items-center bg-primary text-primary-foreground pixel-corner">
+    <span class="font-mono text-xs font-bold uppercase tracking-[0.08em]">pixel-corner</span>
+  </div>
+  <div class="grid h-20 w-44 place-items-center pixel-bordered">
+    <span class="font-mono text-xs font-bold uppercase tracking-[0.08em]">pixel-bordered</span>
+  </div>
+  <div class="grid h-20 w-44 place-items-center bg-secondary text-secondary-foreground pixel-corner pixel-shadow">
+    <span class="font-mono text-xs font-bold uppercase tracking-[0.08em]">pixel-shadow</span>
+  </div>
+</Demo>
+
+## The utilities
+
+| Class | What it does |
+| --- | --- |
+| `pixel-corner` | Stepped 8px/4px notched corners via `clip-path` |
+| `pixel-corner-lg` | Larger 12px/6px step for big cards & badges |
+| `pixel-bordered` | Crisp 2px navy frame that follows the notched corners |
+| `pixel-shadow` / `pixel-shadow-sm` | Hard offset drop-shadow that follows the clipped shape |
+| `pixel-shadow-none` | Removes the shadow (used on `:active`) |
+| `pixel-depth` / `pixel-depth-fill` | Inset bevel for a chiselled 3D-pixel look |
+| `pixelated` | `image-rendering: pixelated` for dropped-in pixel art |
+| `font-display` | Switches to Silkscreen |
+
+## Tips
+
+- Use `pixel-bordered` **instead of** `pixel-corner` + a `bg-*` fill — the pseudo
+  elements define the shape and the fill (`--pf-fill`, defaults to the card color).
+- `pixel-shadow` composes with `pixel-bordered` (filter vs. pseudo layers), so you
+  can add both.
+
+```tsx
+<div className="pixel-bordered pixel-shadow [--pf-fill:var(--secondary)] p-5">
+  a framed, shadowed panel
+</div>
+```

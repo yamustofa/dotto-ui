@@ -1,0 +1,41 @@
+---
+title: IconTile
+description: A square accent tile for housing a glyph or icon.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { IconTile } from "@/components/dotto/icon-tile"
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+
+A square accent tile with stepped corners for housing a `PixelGlyph` or any icon —
+the recurring motif in card headers and feature lists.
+
+<Demo>
+  <IconTile>
+    <PixelGlyph shape="sparkle" unit={4} />
+  </IconTile>
+  <IconTile>
+    <PixelGlyph shape="heart" unit={4} />
+  </IconTile>
+  <IconTile>
+    <PixelGlyph shape="plus" unit={4} />
+  </IconTile>
+</Demo>
+
+```tsx
+import { IconTile } from "@/components/dotto/icon-tile"
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+
+<IconTile>
+  <PixelGlyph shape="sparkle" />
+</IconTile>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `number` | `56` | Tile width & height in px |
+| `color` | `string` | — | Background color (defaults to the accent token) |
+
+Plus all native `<div>` attributes.

@@ -1,0 +1,185 @@
+---
+import "@/styles/dotto.css"
+
+import { IconTile } from "@/components/dotto/icon-tile"
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+import { StickyNote } from "@/components/dotto/sticky-note"
+import { Badge } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+const base = import.meta.env.BASE_URL
+const docsUrl = `${base}getting-started/overview/`
+const heroArt = `${base}assets/AZ8CHhfFYrCW6myfmvu5XA-AZ8CHjnGZqYg-0mCh5ip7w.png`
+
+const systemMap = [
+  {
+    title: "Foundations",
+    copy: "Color, type, corners, shadows, motion, and the pixel utility recipes.",
+    glyph: "sparkle",
+    href: `${base}foundations/colors/`,
+  },
+  {
+    title: "Components",
+    copy: "shadcn-compatible Button, Badge, Card, Input, and more — with live demos.",
+    glyph: "plus",
+    href: `${base}components/button/`,
+  },
+  {
+    title: "Examples",
+    copy: "Composed blocks that show how the pieces behave in real layouts.",
+    glyph: "heart",
+    href: `${base}examples/patterns/`,
+  },
+] as const
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    />
+    <title>DottoUI — a warm pixel component system</title>
+    <meta
+      name="description"
+      content="A gentle pixel-art component system built on Tailwind v4 and shadcn/ui: cream paper, navy ink, cornflower blues, stepped corners."
+    />
+  </head>
+  <body class="min-h-screen bg-background text-foreground">
+    <header
+      class="sticky top-0 z-30 bg-background/95 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
+      >
+        <a href={base} class="flex items-center gap-3">
+          <span class="grid size-10 place-items-center bg-accent pixel-corner">
+            <PixelGlyph shape="diamond" unit={3} />
+          </span>
+          <span class="font-display text-2xl uppercase leading-none">DottoUI</span>
+        </a>
+        <a href={docsUrl} class={buttonVariants({ size: "sm" })}>docs</a>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+      {/* Hero */}
+      <section class="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
+        <div class="pixel-bordered p-6 sm:p-8 lg:p-10">
+          <div class="mb-6 flex flex-wrap gap-3">
+            <Badge>studio system</Badge>
+            <Badge variant="secondary">pixel language</Badge>
+            <Badge variant="outline">shadcn ready</Badge>
+          </div>
+          <h1
+            class="m-0 max-w-2xl font-display text-6xl uppercase leading-[0.86] sm:text-7xl lg:text-8xl"
+          >
+            Make it by Hand
+          </h1>
+          <p
+            class="mt-6 max-w-xl font-mono text-base leading-relaxed text-muted-foreground sm:text-lg"
+          >
+            DottoUI is a small, craft-forward identity for playful interfaces,
+            studio notes, shop moments, and cozy product surfaces. A warm pixel
+            system built on Tailwind v4 and the shadcn/ui component anatomy.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href={docsUrl} class={buttonVariants()}>browse the docs</a>
+            <a
+              href={`${base}foundations/colors/`}
+              class={buttonVariants({ variant: "outline" })}
+            >
+              see foundations
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="relative grid min-h-[360px] place-items-center overflow-hidden pixel-bordered [--pf-fill:var(--card)]"
+        >
+          <img
+            src={heroArt}
+            alt="DottoUI pixel-art reference artwork"
+            class="h-auto w-[40%] min-w-[130px] max-w-[240px] object-contain pixelated"
+          />
+          <div class="absolute right-5 top-5">
+            <StickyNote align="center">handmade with care</StickyNote>
+          </div>
+        </div>
+      </section>
+
+      {/* System map */}
+      <section class="mt-14">
+        <h2
+          class="mb-6 font-mono text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground"
+        >
+          system map
+        </h2>
+        <div class="grid gap-5 md:grid-cols-3">
+          {
+            systemMap.map((item) => (
+              <Card className="gap-5">
+                <CardHeader>
+                  <IconTile>
+                    <PixelGlyph shape={item.glyph} />
+                  </IconTile>
+                  <CardTitle>{item.title}</CardTitle>
+                  <CardDescription>{item.copy}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <a
+                    href={item.href}
+                    class={buttonVariants({ variant: "outline", size: "sm" })}
+                  >
+                    open section
+                  </a>
+                </CardContent>
+              </Card>
+            ))
+          }
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section class="mt-14">
+        <div
+          class="flex flex-col items-start gap-5 pixel-bordered p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+        >
+          <div>
+            <h2 class="m-0 font-display text-4xl uppercase leading-none sm:text-5xl">
+              Open the docs
+            </h2>
+            <p
+              class="mt-3 max-w-xl font-mono text-sm leading-relaxed text-muted-foreground"
+            >
+              Every component has a live demo, copy-ready code, and the full
+              pixel system documented.
+            </p>
+          </div>
+          <a href={docsUrl} class={buttonVariants({ size: "lg" })}>launch docs</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t-2 border-border">
+      <div
+        class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 font-mono text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6"
+      >
+        <span>DottoUI — a warm pixel system.</span>
+        <span>built with Tailwind v4 + shadcn/ui</span>
+      </div>
+    </footer>
+  </body>
+</html>

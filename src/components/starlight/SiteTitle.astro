@@ -1,0 +1,45 @@
+---
+// Pixel-styled site title for the Starlight header: a diamond PixelGlyph tile
+// next to the DottoUI wordmark in the display font.
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+
+const href = import.meta.env.BASE_URL
+---
+
+<a href={href} class="site-title">
+  <span class="glyph">
+    <PixelGlyph shape="diamond" unit={3} />
+  </span>
+  <span class="word">DottoUI</span>
+</a>
+
+<style>
+  .site-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--foreground);
+    line-height: 1;
+  }
+  .glyph {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+    clip-path: polygon(
+      0 6px, 3px 6px, 3px 3px, 6px 3px, 6px 0,
+      calc(100% - 6px) 0, calc(100% - 6px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 6px, 100% 6px,
+      100% calc(100% - 6px), calc(100% - 3px) calc(100% - 6px), calc(100% - 3px) calc(100% - 3px), calc(100% - 6px) calc(100% - 3px), calc(100% - 6px) 100%,
+      6px 100%, 6px calc(100% - 3px), 3px calc(100% - 3px), 3px calc(100% - 6px), 0 calc(100% - 6px)
+    );
+  }
+  .word {
+    font-family: var(--font-display, "Silkscreen", monospace);
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+</style>

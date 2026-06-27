@@ -1,0 +1,28 @@
+---
+title: Textarea
+description: Multi-line cream field with the pixel border.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+
+A resizable multi-line field sharing the Input's pixel border and mono placeholder.
+
+<Demo stack>
+  <div class="grid w-80 gap-2">
+    <Label htmlFor="brief">project brief</Label>
+    <Textarea id="brief" placeholder="what are we making?" />
+  </div>
+</Demo>
+
+```tsx
+import { Textarea } from "@/components/ui/textarea"
+
+<Textarea placeholder="leave a note" />
+```
+
+## Props
+
+All native `<textarea>` attributes are supported (`rows`, `placeholder`,
+`disabled`, `value`, `onChange`, …).

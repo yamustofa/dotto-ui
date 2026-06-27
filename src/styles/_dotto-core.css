@@ -1,14 +1,12 @@
 /* ============================================================================
-   DottoUI — Tailwind v4 + shadcn/ui theme
-   Drop this in your app's globals.css (replaces the shadcn default block).
-   Requires Tailwind v4. Pixel-art aesthetic: cream paper, navy ink, cornflower
-   blues + one sand accent, stepped corners, hard offset shadow.
+   DottoUI core — design tokens, Tailwind theme mapping, and the pixel utility
+   language. NO `@import "tailwindcss"` here: this partial is pulled into both the
+   landing entry (with preflight) and the Starlight entry (layered, no preflight)
+   so the two surfaces share one source of truth. Fonts are loaded via <link>.
    ============================================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import "tailwindcss";
-
-@custom-variant dark (&:is(.dark *));
+/* Match the landing's `.dark` toggle AND Starlight's `[data-theme="dark"]`. */
+@custom-variant dark (&:is(.dark *, [data-theme="dark"] *, .dark, [data-theme="dark"]));
 
 /* ---- shadcn tokens (values sampled from the DottoUI reference) ---------- */
 :root {
@@ -37,11 +35,11 @@
   --input: oklch(0.3076 0.0566 257.95);
   --ring: oklch(0.7081 0.0796 260.06);
 
-  --chart-1: oklch(0.7081 0.0796 260.06);            /* #84A2D3 */
-  --chart-2: oklch(0.6151 0.0776 265.21);            /* #6E84B4 */
-  --chart-3: oklch(0.8146 0.0273 251.7);             /* #B6C4D4 */
-  --chart-4: oklch(0.901 0.0293 82.59);              /* #E8DDC9 */
-  --chart-5: oklch(0.4877 0.0489 262.7);             /* #51607C */
+  --chart-1: oklch(0.7081 0.0796 260.06);
+  --chart-2: oklch(0.6151 0.0776 265.21);
+  --chart-3: oklch(0.8146 0.0273 251.7);
+  --chart-4: oklch(0.901 0.0293 82.59);
+  --chart-5: oklch(0.4877 0.0489 262.7);
 
   --sidebar: oklch(0.9322 0.0103 81.79);
   --sidebar-foreground: oklch(0.3076 0.0566 257.95);
@@ -54,11 +52,11 @@
 
   /* pixel system extras */
   --pixel-shadow-color: oklch(0.3076 0.0566 257.95);
-  --font-display: "Pixelify Sans", monospace;
+  --font-display: "Silkscreen", monospace;
   --font-body: "Space Mono", "Courier New", monospace;
 }
 
-.dark {
+:is(.dark, [data-theme="dark"]) {
   --background: oklch(0.2669 0.0484 257.47);         /* #16263D deep navy */
   --foreground: oklch(0.9322 0.0103 81.79);          /* #ECE8E1 cream */
 
@@ -91,7 +89,7 @@
   --sidebar-border: oklch(0.9322 0.0103 81.79);
   --sidebar-ring: oklch(0.7081 0.0796 260.06);
 
-  --pixel-shadow-color: oklch(0.199 0.0362 257.7);   /* #0B1626 */
+  --pixel-shadow-color: var(--border);               /* cream — shadow reads light-on-dark */
 }
 
 /* ---- map tokens into Tailwind's theme so bg-primary / text-foreground work */
@@ -160,19 +158,11 @@
   );
 }
 /* Hard offset shadow (drop-shadow so it follows the clipped shape) */
-@utility pixel-shadow    { filter: drop-shadow(4px 4px 0 var(--pixel-shadow-color)); }
+@utility pixel-shadow    { filter: drop-shadow(var(--pf-shadow, 4px) var(--pf-shadow, 4px) 0 var(--pixel-shadow-color)); }
 @utility pixel-shadow-sm { filter: drop-shadow(2px 2px 0 var(--pixel-shadow-color)); }
 @utility pixel-shadow-none { filter: none; }
 
-/* Pixel BORDER — a crisp 2px frame that follows the notched corners, drawn as
-   two layered clipped fills: a navy notched box (::before) with the fill notched
-   box (::after) inset 2px on top. A CSS `border` gets sliced by clip-path; a
-   drop-shadow outline renders soft — this stays sharp on every edge.
-
-   USE: add `pixel-bordered` to an element. Don't also add `pixel-corner` (the
-   pseudos define the shape) or a `bg-*` fill (it's hidden). Set the fill with
-   `--pf-fill` (defaults to the card color). For an offset shadow, add
-   `pixel-shadow` alongside — it composes (filter vs. pseudo layers). */
+/* Pixel BORDER — a crisp 2px frame that follows the notched corners. */
 @utility pixel-bordered {
   position: relative;
   isolation: isolate;
@@ -190,18 +180,23 @@
     );
   }
   &::before { inset: 0; background-color: var(--border); }
-  &::after { inset: 2px; background-color: var(--pf-fill, var(--card)); }
+  &::after { inset: var(--pf-border, 2px); background-color: var(--pf-fill, var(--card)); }
+}
+
+/* Pixel DEPTH — inset bevel for a chiselled 3D-pixel look. */
+@utility pixel-depth {
+  &::after {
+    box-shadow:
+      inset 3px 3px 0 0 color-mix(in oklab, white 14%, transparent),
+      inset -3px -3px 0 0 color-mix(in oklab, var(--border) 30%, transparent);
+  }
+}
+@utility pixel-depth-fill {
+  box-shadow:
+    inset 3px 3px 0 0 color-mix(in oklab, white 20%, transparent),
+    inset -3px -3px 0 0 color-mix(in oklab, black 22%, transparent);
 }
 /* Pixelated bitmap rendering for dropped-in pixel art */
 @utility pixelated { image-rendering: pixelated; }
 /* Headline helper */
 @utility font-display { font-family: var(--font-display); }
-
-@layer base {
-  * { border-color: var(--border); }
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-body);
-  }
-}

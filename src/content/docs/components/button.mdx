@@ -1,0 +1,57 @@
+---
+title: Button
+description: The signature low-pixel control — stepped corners, hard offset shadow, sink-on-press.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Button } from "@/components/ui/button"
+
+The signature DottoUI control: stepped corners (`pixel-corner`), a hard navy offset
+shadow (`pixel-shadow`), and a sink-on-press (translate + drop the shadow). Labels
+are uppercase mono.
+
+<Demo>
+  <Button>start a project</Button>
+</Demo>
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+<Button>start a project</Button>
+```
+
+## Variants
+
+<Demo>
+  <Button variant="default">default</Button>
+  <Button variant="secondary">secondary</Button>
+  <Button variant="outline">outline</Button>
+  <Button variant="ghost">ghost</Button>
+  <Button variant="destructive">destructive</Button>
+  <Button variant="link">link</Button>
+</Demo>
+
+## Sizes
+
+<Demo>
+  <Button size="sm">small</Button>
+  <Button size="default">default</Button>
+  <Button size="lg">large</Button>
+</Demo>
+
+## States
+
+<Demo>
+  <Button>enabled</Button>
+  <Button disabled>disabled</Button>
+</Demo>
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `default \| secondary \| outline \| ghost \| destructive \| link` | `default` | Visual style |
+| `size` | `default \| sm \| lg \| icon` | `default` | Control size |
+| `asChild` | `boolean` | `false` | Render the child element (e.g. an `<a>`) instead of a `<button>` |
+
+Plus all native `<button>` attributes.

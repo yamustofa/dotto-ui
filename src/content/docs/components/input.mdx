@@ -1,0 +1,40 @@
+---
+title: Input
+description: Cream field, 2px navy pixel border, stepped corners.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+A cream field with a 2px navy pixel border and stepped corners. Placeholders are
+uppercase mono.
+
+<Demo stack>
+  <div class="grid w-72 gap-2">
+    <Label htmlFor="project">project name</Label>
+    <Input id="project" placeholder="untitled" />
+  </div>
+</Demo>
+
+```tsx
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+<div className="grid gap-2">
+  <Label htmlFor="project">project name</Label>
+  <Input id="project" placeholder="untitled" />
+</div>
+```
+
+## States
+
+<Demo>
+  <Input placeholder="default" />
+  <Input placeholder="disabled" disabled />
+</Demo>
+
+## Props
+
+All native `<input>` attributes are supported (`type`, `placeholder`, `disabled`,
+`value`, `onChange`, …).

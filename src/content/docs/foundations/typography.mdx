@@ -1,0 +1,35 @@
+---
+title: Typography
+description: Silkscreen for display, Space Mono for body and UI.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Badge } from "@/components/ui/badge"
+
+Two typefaces carry the whole system:
+
+- **Display** — `Silkscreen` (`.font-display`), reserved for stacked, uppercase
+  display moments.
+- **Body & labels** — `Space Mono` (the default `font-mono` / `font-sans`), for
+  body text, labels, captions, and controls.
+
+<Demo stack>
+  <div class="font-display text-6xl uppercase leading-[0.86]">
+    Pixel<br />Studio
+  </div>
+  <p class="m-0 max-w-xl font-mono text-base leading-relaxed text-foreground">
+    We craft thoughtful digital experiences with a touch of nostalgia and lots of
+    heart.
+  </p>
+  <div class="flex flex-wrap gap-3">
+    <Badge>service label</Badge>
+    <Badge variant="outline">est. 2021</Badge>
+  </div>
+</Demo>
+
+## Usage
+
+```tsx
+<h1 className="font-display text-6xl uppercase">Pixel Studio</h1>
+<p className="font-mono text-base">Body copy in Space Mono.</p>
+```

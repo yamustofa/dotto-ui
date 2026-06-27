@@ -1,0 +1,74 @@
+---
+title: Composed patterns
+description: How the tokens and components hold together in real interface blocks.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { IconTile } from "@/components/dotto/icon-tile"
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+import { StickyNoteGlyph } from "@/components/docs/demos"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+
+These show how the tokens and components hold together in real interface blocks:
+compact, tactile, and built for the DottoUI voice.
+
+## Service cards
+
+<Demo stack>
+  <div class="grid gap-5 md:grid-cols-3">
+    {[
+      ["Digital Design", "Interfaces and digital products with soul.", "sparkle"],
+      ["Branding", "Identities that feel timeless, crafted with care.", "plus"],
+      ["Illustration", "Custom artwork that tells a story.", "heart"],
+    ].map(([title, copy, glyph]) => (
+      <Card className="gap-5">
+        <CardHeader>
+          <div class="flex items-start gap-4">
+            <IconTile>
+              <PixelGlyph shape={glyph} />
+            </IconTile>
+            <div>
+              <CardTitle>{title}</CardTitle>
+              <CardDescription className="mt-2">{copy}</CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Button variant="outline" size="sm">read more</Button>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</Demo>
+
+## Newsletter block
+
+<Demo stack>
+  <div class="grid w-full gap-6 lg:grid-cols-[1fr_320px] lg:items-center">
+    <div>
+      <Badge variant="secondary">studio notes</Badge>
+      <h3 class="mt-5 font-display text-4xl uppercase leading-[0.9]">
+        Small notes from the making table
+      </h3>
+      <p class="mt-4 font-mono text-sm leading-relaxed text-muted-foreground">
+        Craft-forward copy, handmade and direct.
+      </p>
+    </div>
+    <form class="grid gap-3">
+      <Input type="email" placeholder="your email" />
+      <Button type="button">join the list</Button>
+    </form>
+  </div>
+</Demo>
+
+## Status row
+
+<Demo>
+  <Badge>available</Badge>
+  <Badge variant="outline">4 week sprint</Badge>
+  <Badge variant="secondary">pixel polish</Badge>
+  <StickyNoteGlyph shape="sparkle">make with care</StickyNoteGlyph>
+</Demo>

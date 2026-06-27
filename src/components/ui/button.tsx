@@ -15,11 +15,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground pixel-corner pixel-shadow",
-        secondary: "bg-secondary text-secondary-foreground pixel-corner pixel-shadow",
-        outline: "text-foreground pixel-bordered pixel-shadow active:pixel-shadow-none",
+        default: "bg-primary text-primary-foreground pixel-corner pixel-depth-fill pixel-shadow",
+        secondary: "bg-secondary text-secondary-foreground pixel-corner pixel-depth-fill pixel-shadow",
+        outline: "text-foreground pixel-bordered pixel-depth pixel-shadow active:pixel-shadow-none",
         ghost: "bg-transparent text-foreground border-2 border-dashed border-foreground pixel-corner",
-        destructive: "bg-destructive text-destructive-foreground pixel-corner pixel-shadow",
+        destructive: "bg-destructive text-destructive-foreground pixel-corner pixel-depth-fill pixel-shadow",
         link: "text-accent normal-case tracking-normal underline-offset-4 hover:underline",
       },
       size: {

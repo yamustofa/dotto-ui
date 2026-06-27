@@ -1,0 +1,95 @@
+/* Starlight stylesheet: Tailwind WITHOUT preflight (so it can't clobber the
+   Starlight chrome), ordered via @layer and bridged with @astrojs/starlight-tailwind.
+   Then the DottoUI core (tokens + pixel utilities) and a mapping of our tokens
+   onto Starlight's --sl-* variables so the whole site reads as DottoUI. */
+@layer base, starlight, theme, components, utilities;
+
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "./_dotto-core.css";
+
+/* ---- Re-apply the essential form-control reset inside docs --------------- */
+/* The components assume Tailwind's preflight, but the Starlight stylesheet loads
+   Tailwind WITHOUT preflight (to avoid clobbering the chrome). Without it, native
+   <button>/<input> defaults (borders, padding, line metrics) leak through and the
+   demos render at inconsistent sizes. Re-normalise form controls scoped to the
+   docs content, using :where() so the selector stays at element-specificity and
+   utility classes (px-*, border-*, bg-*) still win. */
+@layer base {
+  :where(.sl-markdown-content) :is(button, input, textarea, select) {
+    font: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0 solid currentColor;
+    border-radius: 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  :where(.sl-markdown-content) button {
+    cursor: pointer;
+  }
+}
+
+/* ---- Map DottoUI tokens onto Starlight's design variables ---------------- */
+/* Our tokens already flip light/dark via [data-theme="dark"], so a single
+   unlayered mapping (loaded after Starlight's own vars) themes both modes. */
+:root {
+  --sl-font: var(--font-body);
+
+  --sl-color-accent: var(--accent);
+  --sl-color-accent-low: var(--secondary);
+  --sl-color-accent-high: var(--accent-foreground);
+
+  --sl-color-white: var(--foreground);
+  --sl-color-black: var(--background);
+
+  --sl-color-text: var(--foreground);
+  --sl-color-text-accent: var(--accent);
+  --sl-color-text-invert: var(--background);
+
+  --sl-color-bg: var(--background);
+  --sl-color-bg-nav: var(--card);
+  --sl-color-bg-sidebar: var(--card);
+  --sl-color-bg-inline-code: var(--muted);
+  --sl-color-bg-accent: var(--accent);
+
+  --sl-color-gray-1: var(--foreground);
+  --sl-color-gray-2: var(--muted-foreground);
+  --sl-color-gray-3: var(--muted-foreground);
+  --sl-color-gray-4: var(--muted-foreground);
+  --sl-color-gray-5: var(--muted);
+  --sl-color-gray-6: var(--card);
+  --sl-color-gray-7: var(--card);
+
+  --sl-color-hairline: var(--border);
+  --sl-color-hairline-light: var(--border);
+  --sl-color-hairline-shade: var(--border);
+}
+
+/* ---- Pixel-flavoured chrome touches ------------------------------------- */
+/* Square everything (no rounded corners) and lean on the navy hairlines. */
+.dark, :root {
+  --sl-shadow-sm: 3px 3px 0 var(--pixel-shadow-color);
+  --sl-shadow-md: 4px 4px 0 var(--pixel-shadow-color);
+  --sl-shadow-lg: 5px 5px 0 var(--pixel-shadow-color);
+}
+
+/* Display font for the page H1 and section headings in docs content. */
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.content-panel h1 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Site header / sidebar get the hard navy hairline of the pixel system. */
+.sidebar-pane,
+header.header {
+  border-color: var(--border) !important;
+}

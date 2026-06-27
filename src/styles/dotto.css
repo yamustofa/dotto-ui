@@ -1,0 +1,20 @@
+/* Landing-page stylesheet: full Tailwind (incl. preflight) + DottoUI core.
+   Used by src/pages/index.astro, which has no Starlight chrome, so a normal
+   preflight reset is safe and desirable here. */
+@import "tailwindcss";
+@import "./_dotto-core.css";
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+  }
+  * {
+    border-color: var(--border);
+  }
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+}

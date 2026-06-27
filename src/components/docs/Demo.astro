@@ -1,0 +1,53 @@
+---
+// Live-preview frame for docs: renders its slotted (React island) children
+// inside a pixel-bordered cream panel. Pair with a fenced code block beneath.
+interface Props {
+  /** Vertical layout & extra padding for taller examples. */
+  stack?: boolean
+}
+const { stack = false } = Astro.props
+---
+
+<!-- `not-content` opts the demo out of Starlight's markdown flow spacing, which
+     otherwise adds margin-top to sibling elements and misaligns the demo items. -->
+<div class:list={["demo", "not-content", { stack }]}>
+  <slot />
+</div>
+
+<style>
+  .demo {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1.75rem;
+    background-color: transparent;
+  }
+  .demo.stack {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .demo::before,
+  .demo::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    clip-path: polygon(
+      0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0,
+      calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+      100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%,
+      8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
+    );
+  }
+  .demo::before {
+    inset: 0;
+    background-color: var(--border);
+  }
+  .demo::after {
+    inset: 2px;
+    background-color: var(--card);
+  }
+</style>

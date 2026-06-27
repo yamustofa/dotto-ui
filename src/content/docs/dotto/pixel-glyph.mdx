@@ -1,0 +1,33 @@
+---
+title: PixelGlyph
+description: Tiny box-shadow pixel-art glyphs rendered from a character map.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+
+Tiny pixel-art glyphs rendered entirely from CSS `box-shadow` off a character map —
+no images. Use them as accents, bullets, and logo marks.
+
+<Demo>
+  <span class="text-foreground"><PixelGlyph shape="sparkle" unit={6} /></span>
+  <span class="text-foreground"><PixelGlyph shape="heart" unit={6} /></span>
+  <span class="text-foreground"><PixelGlyph shape="plus" unit={6} /></span>
+  <span class="text-foreground"><PixelGlyph shape="diamond" unit={6} /></span>
+  <span class="text-foreground"><PixelGlyph shape="square" unit={6} /></span>
+</Demo>
+
+```tsx
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+
+<PixelGlyph shape="heart" unit={6} />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `shape` | `sparkle \| heart \| plus \| diamond \| square` | `sparkle` | Built-in glyph preset |
+| `rows` | `string[]` | — | Custom map (`"#"` = pixel, `"."` = empty), overrides `shape` |
+| `unit` | `number` | `4` | Pixel size in px |
+| `color` | `string` | `currentColor` | Pixel color |

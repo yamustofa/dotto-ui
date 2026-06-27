@@ -1,0 +1,34 @@
+---
+title: StickyNote
+description: A small handwritten-feeling note on a bordered sand surface.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { StickyNote } from "@/components/dotto/sticky-note"
+import { StickyNoteGlyph } from "@/components/docs/demos"
+
+A small note on a bordered sand surface, optionally capped with a glyph — good for
+asides, callouts, and the little "made with care" moments.
+
+<Demo>
+  <StickyNote>remember to ship</StickyNote>
+  <StickyNoteGlyph align="center" shape="heart">nice work</StickyNoteGlyph>
+</Demo>
+
+```tsx
+import { StickyNote } from "@/components/dotto/sticky-note"
+import { PixelGlyph } from "@/components/dotto/pixel-glyph"
+
+<StickyNote glyph={<PixelGlyph shape="heart" unit={3} />}>
+  nice work
+</StickyNote>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `glyph` | `ReactNode` | — | Optional trailing glyph |
+| `align` | `left \| center \| right` | `left` | Text alignment |
+
+Plus all native `<div>` attributes.

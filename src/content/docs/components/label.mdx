@@ -1,0 +1,29 @@
+---
+title: Label
+description: Uppercase mono caption for form controls.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+An uppercase mono caption for form controls. Pairs with `Input`, `Textarea`, and
+`Checkbox`; dims when its peer control is disabled.
+
+<Demo stack>
+  <div class="grid w-72 gap-2">
+    <Label htmlFor="name">project name</Label>
+    <Input id="name" placeholder="untitled" />
+  </div>
+</Demo>
+
+```tsx
+import { Label } from "@/components/ui/label"
+
+<Label htmlFor="name">project name</Label>
+```
+
+## Props
+
+All native `<label>` attributes are supported — set `htmlFor` to the control's
+`id` to wire them together.

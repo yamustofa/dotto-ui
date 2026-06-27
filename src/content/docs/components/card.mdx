@@ -1,0 +1,56 @@
+---
+title: Card
+description: Cream surface, 2px navy pixel border, stepped corners.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+
+A cream surface with a 2px navy pixel border and stepped corners. Same shadcn
+anatomy: `Card` / `CardHeader` / `CardTitle` / `CardDescription` / `CardContent` /
+`CardFooter`.
+
+<Demo>
+  <Card className="max-w-sm">
+    <CardHeader>
+      <CardTitle>field notes</CardTitle>
+      <CardDescription>
+        A warm pixel surface for studio notes and crafted product moments.
+      </CardDescription>
+    </CardHeader>
+    <CardContent className="font-mono text-sm text-muted-foreground">
+      Cream paper, navy ink, stepped corners, and a hard offset shadow.
+    </CardContent>
+    <CardFooter>
+      <Button size="sm">open</Button>
+      <Button size="sm" variant="outline">dismiss</Button>
+    </CardFooter>
+  </Card>
+</Demo>
+
+```tsx
+import {
+  Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
+} from "@/components/ui/card"
+
+<Card>
+  <CardHeader>
+    <CardTitle>field notes</CardTitle>
+    <CardDescription>A warm pixel surface.</CardDescription>
+  </CardHeader>
+  <CardContent>…</CardContent>
+  <CardFooter>…</CardFooter>
+</Card>
+```
+
+## Anatomy
+
+| Part | Role |
+| --- | --- |
+| `Card` | The bordered surface wrapper |
+| `CardHeader` | Title + description stack |
+| `CardTitle` | Uppercase mono heading |
+| `CardDescription` | Muted supporting text |
+| `CardContent` | Main body |
+| `CardFooter` | Actions row |

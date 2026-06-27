@@ -1,0 +1,38 @@
+---
+title: Colors
+description: The DottoUI color tokens — one cream canvas, navy ink, a family of blues, one sand accent.
+---
+
+The palette is intentionally small: one cream canvas, one navy ink, a compact
+family of blues, and one sand accent. Tokens are CSS variables exposed as Tailwind
+utilities (`bg-primary`, `text-muted-foreground`, …) and they flip automatically
+in dark mode.
+
+<div class="not-content grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  {[
+    ["background", "cream paper", "bg-background text-foreground"],
+    ["foreground", "navy ink", "bg-foreground text-background"],
+    ["card", "soft surface", "bg-card text-card-foreground"],
+    ["primary", "cornflower action", "bg-primary text-primary-foreground"],
+    ["secondary", "warm sand", "bg-secondary text-secondary-foreground"],
+    ["accent", "blue accent", "bg-accent text-accent-foreground"],
+    ["muted", "quiet panel", "bg-muted text-muted-foreground"],
+    ["destructive", "muted brick", "bg-destructive text-destructive-foreground"],
+  ].map(([token, label, classes]) => (
+    <div class="pixel-bordered p-4">
+      <div class={`mb-3 h-20 pixel-corner ${classes}`} />
+      <div class="font-mono text-xs font-bold uppercase tracking-[0.08em]">
+        --{token}
+      </div>
+      <div class="mt-1 font-mono text-xs text-muted-foreground">{label}</div>
+    </div>
+  ))}
+</div>
+
+## Usage
+
+```tsx
+<div className="bg-primary text-primary-foreground pixel-corner p-4">
+  cornflower action
+</div>
+```

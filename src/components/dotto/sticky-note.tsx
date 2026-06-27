@@ -17,7 +17,7 @@ export function StickyNote({
   return (
     <div
       className={cn(
-        "inline-block px-4 py-3.5 font-mono text-xs font-bold uppercase leading-relaxed tracking-[0.05em] text-secondary-foreground pixel-bordered [--pf-fill:var(--secondary)]",
+        "inline-block px-4 py-3.5 font-mono text-xs font-bold uppercase leading-relaxed tracking-[0.05em] text-secondary-foreground pixel-bordered pixel-depth [--pf-fill:var(--secondary)]",
         className
       )}
       style={{ textAlign: align }}

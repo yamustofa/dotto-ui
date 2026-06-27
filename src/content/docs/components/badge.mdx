@@ -1,0 +1,36 @@
+---
+title: Badge
+description: Small uppercase mono chip with stepped corners.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Badge } from "@/components/ui/badge"
+
+A small uppercase mono chip with stepped corners — for labels, tags, and metadata.
+
+<Demo>
+  <Badge>studio system</Badge>
+</Demo>
+
+```tsx
+import { Badge } from "@/components/ui/badge"
+
+<Badge>studio system</Badge>
+```
+
+## Variants
+
+<Demo>
+  <Badge variant="default">default</Badge>
+  <Badge variant="secondary">secondary</Badge>
+  <Badge variant="outline">outline</Badge>
+  <Badge variant="destructive">destructive</Badge>
+</Demo>
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `default \| secondary \| outline \| destructive` | `default` | Visual style |
+
+Plus all native `<span>` attributes.

@@ -1,0 +1,41 @@
+---
+title: Checkbox
+description: A pixel checkbox with a hard shadow and sink-on-press, built on Radix.
+---
+
+import Demo from "@/components/docs/Demo.astro"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
+
+A pixel checkbox built on Radix `Checkbox`, with stepped corners, a small hard
+shadow, and a sink-on-press. The check uses a pixel-art glyph.
+
+<Demo stack>
+  <div class="flex items-center gap-3">
+    <Checkbox id="ship" defaultChecked />
+    <Label htmlFor="ship">ship it</Label>
+  </div>
+</Demo>
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
+
+<div className="flex items-center gap-3">
+  <Checkbox id="ship" defaultChecked />
+  <Label htmlFor="ship">ship it</Label>
+</div>
+```
+
+## States
+
+<Demo>
+  <Checkbox />
+  <Checkbox defaultChecked />
+  <Checkbox disabled />
+</Demo>
+
+## Props
+
+Accepts all Radix `Checkbox.Root` props (`checked`, `defaultChecked`,
+`onCheckedChange`, `disabled`, …).

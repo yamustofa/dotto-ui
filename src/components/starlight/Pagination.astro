@@ -1,0 +1,101 @@
+---
+// Pixel-styled prev/next pagination for Starlight, mirroring the DottoUI Button
+// `outline` variant: a notched pixel frame (.pixel-bordered), a chiselled inset
+// bevel (.pixel-depth), and a hard offset shadow that "presses down" on
+// hover/active. The eyebrow uses the Silkscreen display font; the page title
+// stays in the readable body font and turns cornflower-blue on hover.
+import { Icon } from "@astrojs/starlight/components"
+
+const { dir, pagination } = Astro.locals.starlightRoute
+const { prev, next } = pagination
+const isRtl = dir === "rtl"
+---
+
+<div class="pagination-links print:hidden" dir={dir}>
+  {
+    prev && (
+      <a href={prev.href} rel="prev" class="pixel-bordered pixel-depth">
+        <Icon name={isRtl ? "right-arrow" : "left-arrow"} size="1.5rem" />
+        <span class="label">
+          {Astro.locals.t("page.previousLink")}
+          <span class="link-title">{prev.label}</span>
+        </span>
+      </a>
+    )
+  }
+  {
+    next && (
+      <a href={next.href} rel="next" class="pixel-bordered pixel-depth">
+        <Icon name={isRtl ? "left-arrow" : "right-arrow"} size="1.5rem" />
+        <span class="label">
+          {Astro.locals.t("page.nextLink")}
+          <span class="link-title">{next.label}</span>
+        </span>
+      </a>
+    )
+  }
+</div>
+
+<style>
+  .pagination-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: 1.25rem;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.1rem;
+    text-decoration: none;
+    color: var(--foreground);
+    /* Hard offset shadow that follows the notched silhouette (drop-shadow
+       tracks the .pixel-bordered frame), matching the Button's .pixel-shadow. */
+    filter: drop-shadow(4px 4px 0 var(--pixel-shadow-color));
+    transition: transform 90ms steps(2, end), filter 90ms steps(2, end);
+  }
+
+  /* Press down on hover, then sink fully on click — the Button interaction. */
+  a:hover {
+    transform: translate(2px, 2px);
+    filter: drop-shadow(2px 2px 0 var(--pixel-shadow-color));
+  }
+  a:active {
+    transform: translate(4px, 4px);
+    filter: none;
+  }
+
+  [rel="next"] {
+    flex-direction: row-reverse;
+    text-align: end;
+  }
+
+  .label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-family: var(--font-display, "Silkscreen", monospace);
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    color: var(--sl-color-gray-3);
+  }
+  .link-title {
+    font-family: var(--font-body);
+    font-size: var(--sl-text-lg);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--foreground);
+  }
+  a:hover .link-title {
+    color: var(--accent);
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+</style>

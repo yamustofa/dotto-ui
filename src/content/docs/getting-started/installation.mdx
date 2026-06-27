@@ -1,0 +1,34 @@
+---
+title: Installation
+description: Run the docs locally and use DottoUI components in your own project.
+---
+
+DottoUI is a **copy-paste** system in the shadcn/ui spirit: the components live in
+`src/components/ui` and `src/components/dotto`, styled entirely with the Tailwind
+v4 tokens and pixel utilities documented here.
+
+## Run this site locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Requirements
+
+- **Tailwind v4** (via `@tailwindcss/vite`)
+- **React 19**
+- The DottoUI token + utility stylesheet (see [Pixel utilities](../../foundations/pixel-utilities/))
+
+## Use a component
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export function ProjectCta() {
+  return <Button>start a project</Button>
+}
+```
+
+The components depend on a small `cn()` helper (`clsx` + `tailwind-merge`) at
+`@/lib/utils`, and on the design tokens defined in the core stylesheet.
