@@ -157,6 +157,15 @@
     12px 100%, 12px calc(100% - 6px), 6px calc(100% - 6px), 6px calc(100% - 12px), 0 calc(100% - 12px)
   );
 }
+/* Single-step notch — one 4px chamfer per corner (1-step stair). Use on badges. */
+@utility pixel-corner-1 {
+  clip-path: polygon(
+    0 4px, 4px 0,
+    calc(100% - 4px) 0, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 0 calc(100% - 4px)
+  );
+}
 /* Hard offset shadow (drop-shadow so it follows the clipped shape) */
 @utility pixel-shadow    { filter: drop-shadow(var(--pf-shadow, 4px) var(--pf-shadow, 4px) 0 var(--pixel-shadow-color)); }
 @utility pixel-shadow-sm { filter: drop-shadow(2px 2px 0 var(--pixel-shadow-color)); }
@@ -177,6 +186,27 @@
       calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
       100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%,
       8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
+    );
+  }
+  &::before { inset: 0; background-color: var(--border); }
+  &::after { inset: var(--pf-border, 2px); background-color: var(--pf-fill, var(--card)); }
+}
+
+/* Bordered frame with the single-step notch — matches .pixel-corner-1. */
+@utility pixel-bordered-1 {
+  position: relative;
+  isolation: isolate;
+  background-color: transparent;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    clip-path: polygon(
+      0 4px, 4px 0,
+      calc(100% - 4px) 0, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) 100%,
+      4px 100%, 0 calc(100% - 4px)
     );
   }
   &::before { inset: 0; background-color: var(--border); }

@@ -1,6 +1,10 @@
 ---
 import "@/styles/dotto.css"
 
+import { Image } from "astro:assets"
+import footerMeadow from "../assets/footer-meadow.png"
+import heroFlowers from "../assets/hero-sunflowers.png"
+
 import { IconTile } from "@/components/dotto/icon-tile"
 import { PixelGlyph } from "@/components/dotto/pixel-glyph"
 import { StickyNote } from "@/components/dotto/sticky-note"
@@ -13,27 +17,38 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { GitBranch } from "pixelarticons/react/GitBranch"
+import { ExternalLink } from "pixelarticons/react/ExternalLink"
+import { BookOpen } from "pixelarticons/react/BookOpen"
+import { File } from "pixelarticons/react/File"
 
 const base = import.meta.env.BASE_URL
 const docsUrl = `${base}getting-started/overview/`
-const heroArt = `${base}assets/AZ8CHhfFYrCW6myfmvu5XA-AZ8CHjnGZqYg-0mCh5ip7w.png`
+
+const footerLinks = [
+  { label: "Source", href: "https://github.com/", icon: GitBranch, external: true },
+  { label: "Icons by Pixelarticons", href: "https://pixelarticons.com", icon: ExternalLink, external: true },
+  { label: "Docs", href: docsUrl, icon: BookOpen, external: false },
+  { label: "License", href: `${base}license/`, icon: File, external: false },
+  { label: "Privacy", href: `${base}privacy/`, icon: File, external: false },
+] as const
 
 const systemMap = [
   {
     title: "Foundations",
-    copy: "Color, type, corners, shadows, motion, and the pixel utility recipes.",
+    copy: "The colors, type, corners, and little shadows that give everything its warmth.",
     glyph: "sparkle",
     href: `${base}foundations/colors/`,
   },
   {
     title: "Components",
-    copy: "shadcn-compatible Button, Badge, Card, Input, and more — with live demos.",
+    copy: "Buttons, badges, cards, and inputs — friendly pieces you can drop straight in.",
     glyph: "plus",
     href: `${base}components/button/`,
   },
   {
     title: "Examples",
-    copy: "Composed blocks that show how the pieces behave in real layouts.",
+    copy: "Little scenes that show how the pieces play together in a real layout.",
     glyph: "heart",
     href: `${base}examples/patterns/`,
   },
@@ -44,6 +59,17 @@ const systemMap = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // Match Starlight's saved theme, falling back to the OS preference.
+      const stored = localStorage.getItem("starlight-theme")
+      const theme =
+        stored ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light")
+      document.documentElement.classList.toggle("dark", theme === "dark")
+      document.documentElement.setAttribute("data-theme", theme)
+    </script>
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -76,24 +102,24 @@ const systemMap = [
 
     <main class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
       {/* Hero */}
-      <section class="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
-        <div class="pixel-bordered p-6 sm:p-8 lg:p-10">
+      <section class="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-10">
+        <div>
           <div class="mb-6 flex flex-wrap gap-3">
-            <Badge>studio system</Badge>
-            <Badge variant="secondary">pixel language</Badge>
+            <Badge>pixel ui kit</Badge>
+            <Badge variant="secondary">warm + cozy</Badge>
             <Badge variant="outline">shadcn ready</Badge>
           </div>
           <h1
             class="m-0 max-w-2xl font-display text-6xl uppercase leading-[0.86] sm:text-7xl lg:text-8xl"
           >
-            Make it by Hand
+            Build in Pixels
           </h1>
           <p
             class="mt-6 max-w-xl font-mono text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            DottoUI is a small, craft-forward identity for playful interfaces,
-            studio notes, shop moments, and cozy product surfaces. A warm pixel
-            system built on Tailwind v4 and the shadcn/ui component anatomy.
+            DottoUI is a cozy little design system for playful, characterful
+            interfaces. Warm cream paper, navy ink, and soft pixel edges —
+            friendly pieces you can drop into apps, studio notes, and shop corners.
           </p>
           <div class="mt-8 flex flex-wrap gap-4">
             <a href={docsUrl} class={buttonVariants()}>browse the docs</a>
@@ -106,16 +132,27 @@ const systemMap = [
           </div>
         </div>
 
-        <div
-          class="relative grid min-h-[360px] place-items-center overflow-hidden pixel-bordered [--pf-fill:var(--card)]"
-        >
-          <img
-            src={heroArt}
-            alt="DottoUI pixel-art reference artwork"
-            class="h-auto w-[40%] min-w-[130px] max-w-[240px] object-contain pixelated"
+        <div class="relative mx-auto w-full max-w-xl">
+          <Image
+            src={heroFlowers}
+            alt="Pixel-art illustration of three blue daisies"
+            widths={[480, 768, 1536]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            class="h-auto w-full"
           />
-          <div class="absolute right-5 top-5">
-            <StickyNote align="center">handmade with care</StickyNote>
+          <div class="absolute right-1 top-1 sm:right-3 sm:top-3">
+            <StickyNote
+              align="left"
+              className="min-w-40"
+              aria-label="keep building beautiful things"
+            >
+              <span data-sticky-type aria-hidden="true">
+                <span data-sticky-text class="whitespace-pre-line"></span><span
+                  class="sticky-cursor"
+                >_</span>
+              </span>
+              <br /><PixelGlyph shape="heart" unit={3} />
+            </StickyNote>
           </div>
         </div>
       </section>
@@ -164,8 +201,8 @@ const systemMap = [
             <p
               class="mt-3 max-w-xl font-mono text-sm leading-relaxed text-muted-foreground"
             >
-              Every component has a live demo, copy-ready code, and the full
-              pixel system documented.
+              Every piece has a live demo and copy-ready code, with the whole
+              pixel system written down in plain language.
             </p>
           </div>
           <a href={docsUrl} class={buttonVariants({ size: "lg" })}>launch docs</a>
@@ -173,13 +210,111 @@ const systemMap = [
       </section>
     </main>
 
-    <footer class="border-t-2 border-border">
+    <footer class="relative isolate -mt-20 md:-mt-16 overflow-hidden">
+      <Image
+        src={footerMeadow}
+        alt=""
+        aria-hidden="true"
+        widths={[768, 1152, 1717]}
+        sizes="100vw"
+        class="pointer-events-none absolute inset-0 -z-20 h-full w-full select-none object-cover object-bottom opacity-90 dark:opacity-45"
+      />
       <div
-        class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 font-mono text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6"
+        class="absolute inset-0 -z-10 hidden bg-background/30 dark:block"
+        aria-hidden="true"
       >
-        <span>DottoUI — a warm pixel system.</span>
-        <span>built with Tailwind v4 + shadcn/ui</span>
+      </div>
+      <div
+        class="absolute inset-x-0 top-0 -z-10 h-[clamp(220px,28vw,380px)] bg-linear-to-b from-background via-background/80 to-transparent"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="relative mx-auto max-w-6xl px-4 pt-24 pb-[clamp(300px,48vw,680px)] sm:px-6 sm:pt-40">
+        <nav
+          class="flex flex-wrap gap-x-6 gap-y-3 font-mono text-xs font-bold uppercase tracking-[0.08em]"
+          aria-label="Footer"
+        >
+          {
+            footerLinks.map((link) => {
+              const Icon = link.icon
+              return (
+                <a
+                  href={link.href}
+                  class="inline-flex items-center gap-2 text-foreground hover:text-accent [&_svg]:size-4"
+                  {...(link.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  <Icon />
+                  {link.label}
+                </a>
+              )
+            })
+          }
+        </nav>
+        <p class="mt-6 max-w-sm font-mono text-xs leading-relaxed text-muted-foreground">
+          DottoUI — a cozy pixel UI kit.
+        </p>
       </div>
     </footer>
+
+    <style is:global>
+      @keyframes sticky-blink {
+        0%,
+        49% {
+          opacity: 1;
+        }
+        50%,
+        100% {
+          opacity: 0;
+        }
+      }
+      .sticky-cursor {
+        animation: sticky-blink 1.05s steps(1, end) infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .sticky-cursor {
+          animation: none;
+        }
+      }
+    </style>
+
+    <script>
+      const text = document.querySelector<HTMLElement>("[data-sticky-text]")
+      if (text) {
+        const lines = ["keep building", "beautiful things"]
+        const reduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches
+
+        if (reduced) {
+          text.textContent = lines.join("\n")
+        } else {
+          let li = 0
+          let ci = 0
+          const type = () => {
+            const line = lines[li]
+            const done = lines.slice(0, li)
+            text.textContent = [...done, line.slice(0, ci)].join("\n")
+            if (ci < line.length) {
+              ci++
+              setTimeout(type, 85)
+            } else if (li < lines.length - 1) {
+              li++
+              ci = 0
+              setTimeout(type, 320)
+            } else {
+              // hold the finished phrase, then retype
+              setTimeout(() => {
+                li = 0
+                ci = 0
+                type()
+              }, 8000)
+            }
+          }
+          type()
+        }
+      }
+    </script>
   </body>
 </html>

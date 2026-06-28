@@ -6,8 +6,9 @@ import { cn } from "@/lib/utils"
 
 /**
  * DottoUI Button.
- * Signature low-pixel control: stepped corners (.pixel-corner), a hard navy
- * offset shadow (.pixel-shadow), and a sink-on-press (translate + drop shadow).
+ * Signature low-pixel control: a crisp pixel border (.pixel-bordered) with a
+ * hard navy offset shadow (.pixel-shadow) and a sink-on-press (translate + drop
+ * shadow).
  * Labels are uppercase mono.
  */
 const buttonVariants = cva(
@@ -15,11 +16,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground pixel-corner pixel-depth-fill pixel-shadow",
-        secondary: "bg-secondary text-secondary-foreground pixel-corner pixel-depth-fill pixel-shadow",
+        default: "[--pf-fill:var(--primary)] text-primary-foreground pixel-bordered pixel-depth pixel-shadow",
+        secondary: "[--pf-fill:var(--secondary)] text-secondary-foreground pixel-bordered pixel-depth pixel-shadow",
         outline: "text-foreground pixel-bordered pixel-depth pixel-shadow active:pixel-shadow-none",
         ghost: "bg-transparent text-foreground border-2 border-dashed border-foreground pixel-corner",
-        destructive: "bg-destructive text-destructive-foreground pixel-corner pixel-depth-fill pixel-shadow",
+        destructive: "[--pf-fill:var(--destructive)] text-destructive-foreground pixel-bordered pixel-depth pixel-shadow",
         link: "text-accent normal-case tracking-normal underline-offset-4 hover:underline",
       },
       size: {
