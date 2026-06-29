@@ -4,8 +4,8 @@
   "title": "Card",
   "description": "A shadcn-compatible card anatomy with DottoUI pixel borders and depth.",
   "registryDependencies": [
-    "dotto-core",
-    "utils"
+    "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+    "https://yamustofa.github.io/dotto-ui/r/utils.json"
   ],
   "files": [
     {
