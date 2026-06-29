@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./.github/logo.svg" alt="DottoUI logo" width="120" height="120" />
+
 # DottoUI
 
 **A cozy, pixel-art design system for React — warm cream paper, navy ink, stepped corners.**

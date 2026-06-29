@@ -21,6 +21,8 @@ import { GitBranch } from "pixelarticons/react/GitBranch"
 import { ExternalLink } from "pixelarticons/react/ExternalLink"
 import { BookOpen } from "pixelarticons/react/BookOpen"
 import { File } from "pixelarticons/react/File"
+import { Moon } from "pixelarticons/react/Moon"
+import { Lightbulb } from "pixelarticons/react/Lightbulb"
 
 const base = import.meta.env.BASE_URL
 const docsUrl = `${base}getting-started/overview/`
@@ -77,7 +79,7 @@ const systemMap = [
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     />
-    <title>DottoUI — a warm pixel component system</title>
+    <title>DottoUI — a cozy pixel UI kit</title>
     <meta
       name="description"
       content="A gentle pixel-art component system built on Tailwind v4 and shadcn/ui: cream paper, navy ink, cornflower blues, stepped corners."
@@ -96,7 +98,21 @@ const systemMap = [
           </span>
           <span class="font-display text-2xl uppercase leading-none">DottoUI</span>
         </a>
-        <a href={docsUrl} class={buttonVariants({ size: "sm" })}>docs</a>
+        <div class="flex items-center gap-3">
+          <button
+            id="theme-toggle"
+            type="button"
+            class={buttonVariants({ variant: "outline", size: "icon" })}
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+          >
+            <span class="i-moon inline-flex"><Moon /></span>
+            <span class="i-bulb inline-flex"><Lightbulb /></span>
+          </button>
+          <a href={docsUrl} class={buttonVariants()}>
+            <BookOpen />docs
+          </a>
+        </div>
       </div>
     </header>
 
@@ -122,7 +138,9 @@ const systemMap = [
             friendly pieces you can drop into apps, studio notes, and shop corners.
           </p>
           <div class="mt-8 flex flex-wrap gap-4">
-            <a href={docsUrl} class={buttonVariants()}>browse the docs</a>
+            <a href={docsUrl} class={buttonVariants()}>
+              <BookOpen />browse the docs
+            </a>
             <a
               href={`${base}foundations/colors/`}
               class={buttonVariants({ variant: "outline" })}
@@ -135,7 +153,7 @@ const systemMap = [
         <div class="relative mx-auto w-full max-w-xl">
           <Image
             src={heroFlowers}
-            alt="Pixel-art illustration of three blue daisies"
+            alt="Pixel-art illustration of three blue sunflowers"
             widths={[480, 768, 1536]}
             sizes="(max-width: 1024px) 100vw, 50vw"
             class="h-auto w-full"
@@ -205,12 +223,14 @@ const systemMap = [
               pixel system written down in plain language.
             </p>
           </div>
-          <a href={docsUrl} class={buttonVariants({ size: "lg" })}>launch docs</a>
+          <a href={docsUrl} class={buttonVariants({ size: "lg" })}>
+            <BookOpen />launch docs
+          </a>
         </div>
       </section>
     </main>
 
-    <footer class="relative isolate -mt-20 md:-mt-16 overflow-hidden">
+    <footer class="relative isolate -mt-18 md:-mt-16 overflow-hidden">
       <Image
         src={footerMeadow}
         alt=""
@@ -277,7 +297,26 @@ const systemMap = [
           animation: none;
         }
       }
+      /* Theme toggle: show the moon in light mode, the bulb in dark mode. */
+      html:not(.dark) #theme-toggle .i-bulb {
+        display: none;
+      }
+      html.dark #theme-toggle .i-moon {
+        display: none;
+      }
     </style>
+
+    <script>
+      // Dark-mode toggle. Persists to the same key Starlight uses so the
+      // landing and the docs stay in sync.
+      const toggle = document.getElementById("theme-toggle")
+      toggle?.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark")
+        const theme = isDark ? "dark" : "light"
+        document.documentElement.setAttribute("data-theme", theme)
+        localStorage.setItem("starlight-theme", theme)
+      })
+    </script>
 
     <script>
       const text = document.querySelector<HTMLElement>("[data-sticky-text]")
