@@ -21,7 +21,10 @@
       "type": "registry:lib",
       "title": "cn utility",
       "description": "Class name utility used by DottoUI components.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "src/lib/utils.ts",
@@ -35,8 +38,14 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "A shadcn-style button with DottoUI pixel corners, depth, and hard press motion.",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
-      "registryDependencies": ["dotto-core", "utils"],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/button.tsx",
@@ -50,8 +59,13 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "A compact shadcn-style badge for metadata, status, and tags.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["dotto-core", "utils"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/badge.tsx",
@@ -65,7 +79,10 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "A shadcn-compatible card anatomy with DottoUI pixel borders and depth.",
-      "registryDependencies": ["dotto-core", "utils"],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/card.tsx",
@@ -79,7 +96,10 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "A native input styled with DottoUI pixel borders and mono labels.",
-      "registryDependencies": ["dotto-core", "utils"],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/input.tsx",
@@ -93,7 +113,10 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "An uppercase mono label for DottoUI forms.",
-      "registryDependencies": ["dotto-core", "utils"],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/label.tsx",
@@ -107,7 +130,10 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "A native textarea styled with DottoUI pixel borders.",
-      "registryDependencies": ["dotto-core", "utils"],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/textarea.tsx",
@@ -121,8 +147,14 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "A Radix checkbox with DottoUI pixel depth and icon styling.",
-      "dependencies": ["@radix-ui/react-checkbox", "pixelarticons"],
-      "registryDependencies": ["dotto-core", "utils"],
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "pixelarticons"
+      ],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/checkbox.tsx",
@@ -136,7 +168,9 @@
       "type": "registry:component",
       "title": "PixelGlyph",
       "description": "A tiny pixel motif component drawn with square box shadows.",
-      "registryDependencies": ["dotto-core"],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json"
+      ],
       "files": [
         {
           "path": "src/components/dotto/pixel-glyph.tsx",
@@ -150,7 +184,10 @@
       "type": "registry:component",
       "title": "IconTile",
       "description": "A DottoUI icon container with pixel corners.",
-      "registryDependencies": ["dotto-core", "utils"],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/dotto/icon-tile.tsx",
@@ -164,7 +201,10 @@
       "type": "registry:component",
       "title": "StickyNote",
       "description": "A small pixel-bordered note component for crafted callouts.",
-      "registryDependencies": ["dotto-core", "utils"],
+      "registryDependencies": [
+        "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+        "https://yamustofa.github.io/dotto-ui/r/utils.json"
+      ],
       "files": [
         {
           "path": "src/components/dotto/sticky-note.tsx",

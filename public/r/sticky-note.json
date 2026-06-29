@@ -4,8 +4,8 @@
   "title": "StickyNote",
   "description": "A small pixel-bordered note component for crafted callouts.",
   "registryDependencies": [
-    "dotto-core",
-    "utils"
+    "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+    "https://yamustofa.github.io/dotto-ui/r/utils.json"
   ],
   "files": [
     {

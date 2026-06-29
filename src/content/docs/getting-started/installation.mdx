@@ -28,15 +28,19 @@ DottoUI publishes shadcn registry items as static JSON under `/r`.
 npx shadcn@latest add https://yamustofa.github.io/dotto-ui/r/button.json
 ```
 
-For local development, run the docs site and use the local registry URL:
+For local development, run the docs site and use the local registry URL. The
+dev server is served under the `/dotto-ui/` base path, so the registry files
+live at `/dotto-ui/r/*.json`:
 
 ```bash
 npm run dev
-npx shadcn@latest add http://localhost:4321/r/button.json
+npx shadcn@latest add http://localhost:4321/dotto-ui/r/button.json
 ```
 
 Each component pulls in its registry dependencies. For example, `button` depends
-on the DottoUI core stylesheet and the shared `cn()` utility.
+on the DottoUI core stylesheet and the shared `cn()` utility, which are fetched
+and installed automatically. (Those dependencies resolve from the published
+`yamustofa.github.io/dotto-ui` registry even during local installs.)
 
 ## Use a component after install
 

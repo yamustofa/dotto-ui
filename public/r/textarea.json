@@ -4,8 +4,8 @@
   "title": "Textarea",
   "description": "A native textarea styled with DottoUI pixel borders.",
   "registryDependencies": [
-    "dotto-core",
-    "utils"
+    "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+    "https://yamustofa.github.io/dotto-ui/r/utils.json"
   ],
   "files": [
     {

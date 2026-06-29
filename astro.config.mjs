@@ -19,6 +19,7 @@ export default defineConfig({
       description:
         "A warm pixel-art component system: cream paper, navy ink, cornflower blues.",
       tagline: "A warm pixel system for gentle interfaces.",
+      favicon: "/favicon.svg",
       customCss: ["./src/styles/starlight.css"],
       head: [
         {

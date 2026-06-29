@@ -4,8 +4,8 @@
   "title": "IconTile",
   "description": "A DottoUI icon container with pixel corners.",
   "registryDependencies": [
-    "dotto-core",
-    "utils"
+    "https://yamustofa.github.io/dotto-ui/r/dotto-core.json",
+    "https://yamustofa.github.io/dotto-ui/r/utils.json"
   ],
   "files": [
     {
