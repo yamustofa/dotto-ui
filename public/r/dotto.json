@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dotto",
+  "title": "DottoUI",
+  "description": "Install the DottoUI core, utilities, and all current components.",
+  "registryDependencies": [
+    "https://yamustofa.github.io/dotto-ui/r/button.json",
+    "https://yamustofa.github.io/dotto-ui/r/badge.json",
+    "https://yamustofa.github.io/dotto-ui/r/card.json",
+    "https://yamustofa.github.io/dotto-ui/r/input.json",
+    "https://yamustofa.github.io/dotto-ui/r/label.json",
+    "https://yamustofa.github.io/dotto-ui/r/textarea.json",
+    "https://yamustofa.github.io/dotto-ui/r/checkbox.json",
+    "https://yamustofa.github.io/dotto-ui/r/pixel-glyph.json",
+    "https://yamustofa.github.io/dotto-ui/r/icon-tile.json",
+    "https://yamustofa.github.io/dotto-ui/r/sticky-note.json"
+  ],
+  "type": "registry:item"
+}

@@ -1,0 +1,43 @@
+---
+title: Local development
+description: Run the DottoUI docs site and build the local component registry.
+---
+
+Use this page when you're working on DottoUI itself. If you only want to use the
+components in your own app, start with [Installation](../installation/).
+
+## Run this site locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Install from the local registry
+
+DottoUI publishes shadcn registry items as static JSON under `/r`. During local
+development, run the docs site and point the shadcn CLI at the local registry
+URL.
+
+The dev server is served under the `/dotto-ui/` base path, so the registry files
+live at `/dotto-ui/r/*.json`:
+
+```bash
+npm run dev
+npx shadcn@latest add http://localhost:4321/dotto-ui/r/button.json
+```
+
+Each component pulls in its registry dependencies. Those dependencies resolve
+from the published `yamustofa.github.io/dotto-ui` registry even during local
+installs.
+
+## Build the registry
+
+Registry source lives in `registry.json`. Build the static registry files with:
+
+```bash
+npm run registry:build
+```
+
+The generated files are written to `public/r`, so Astro and GitHub Pages can
+serve them directly.

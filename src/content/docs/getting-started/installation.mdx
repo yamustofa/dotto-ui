@@ -1,48 +1,70 @@
 ---
 title: Installation
-description: Run the docs locally and use DottoUI components in your own project.
+description: Initialize shadcn, add DottoUI, and start using components.
 ---
 
-DottoUI is a **copy-paste** system in the shadcn/ui spirit: the components live in
-`src/components/ui` and `src/components/dotto`, styled entirely with the Tailwind
-v4 tokens and pixel utilities documented here.
-
-## Run this site locally
-
-```bash
-npm install
-npm run dev
-```
+DottoUI is a **copy-paste** system in the shadcn/ui spirit. The registry copies
+components into your app, installs their package dependencies, and patches your
+configured Tailwind CSS file with the DottoUI core import.
 
 ## Requirements
 
-- **Tailwind v4** (via `@tailwindcss/vite`)
+Before adding DottoUI, make sure your app has:
+
 - **React 19**
-- The DottoUI token + utility stylesheet (see [Pixel utilities](../../foundations/pixel-utilities/))
+- **Tailwind v4** running in your build setup
+- A global CSS file imported by your app entry/root
+- A shadcn-compatible `components.json` with aliases such as `@/components` and `@/lib/utils`
 
-## Install from the registry
+For a new project, initialize shadcn first:
 
-DottoUI publishes shadcn registry items as static JSON under `/r`.
+```bash
+npx shadcn@latest init
+```
+
+## Install DottoUI
+
+Install the DottoUI core, utilities, and all current components with one command:
+
+```bash
+npx shadcn@latest add https://yamustofa.github.io/dotto-ui/r/dotto.json
+```
+
+This installs the shared DottoUI core stylesheet, the `cn()` utility, component
+files, Fontsource packages for the DottoUI fonts, and the packages required by
+those components.
+
+## Install One Component
+
+If you only need one component, install it directly:
 
 ```bash
 npx shadcn@latest add https://yamustofa.github.io/dotto-ui/r/button.json
 ```
 
-For local development, run the docs site and use the local registry URL. The
-dev server is served under the `/dotto-ui/` base path, so the registry files
-live at `/dotto-ui/r/*.json`:
+Each component pulls in its registry dependencies automatically. For example,
+`button` installs the DottoUI core stylesheet, the shared `cn()` utility, the
+Fontsource packages, and the packages it needs.
 
-```bash
-npm run dev
-npx shadcn@latest add http://localhost:4321/dotto-ui/r/button.json
+## CSS Updates
+
+DottoUI core asks shadcn to update your configured Tailwind CSS file. In a
+TanStack Start or Vite app, that usually means `src/styles.css` receives an import
+like this near the top of the file:
+
+```css
+@import "tailwindcss";
+@import "./styles/_dotto-core.css";
 ```
 
-Each component pulls in its registry dependencies. For example, `button` depends
-on the DottoUI core stylesheet and the shared `cn()` utility, which are fetched
-and installed automatically. (Those dependencies resolve from the published
-`yamustofa.github.io/dotto-ui` registry even during local installs.)
+Your existing shadcn token blocks can stay in the file. DottoUI's tokens and pixel
+utilities live in `src/styles/_dotto-core.css`, and that file imports the
+Fontsource CSS for Silkscreen and Space Mono.
 
-## Use a component after install
+If your global CSS file lives somewhere unusual, check the generated import path
+and adjust it so it points to the copied `src/styles/_dotto-core.css` file.
+
+## Use a Component
 
 ```tsx
 import { Button } from "@/components/ui/button"
@@ -52,16 +74,26 @@ export function ProjectCta() {
 }
 ```
 
-The components depend on a small `cn()` helper (`clsx` + `tailwind-merge`) at
-`@/lib/utils`, and on the design tokens defined in the core stylesheet.
+## Add More Components
 
-## Registry development
-
-Registry source lives in `registry.json`. Build the static registry files with:
+Install each component when you need it:
 
 ```bash
-npm run registry:build
+npx shadcn@latest add https://yamustofa.github.io/dotto-ui/r/card.json
+npx shadcn@latest add https://yamustofa.github.io/dotto-ui/r/input.json
 ```
 
-The generated files are written to `public/r`, so Astro and GitHub Pages can
-serve them directly.
+## Troubleshooting
+
+If a component is copied but does not appear styled, check that your global CSS
+file imports both Tailwind and `_dotto-core.css`.
+
+If the import path `@/components/ui/button` fails, check the aliases in your
+`components.json` and `tsconfig.json`.
+
+If you are using TanStack Router and see a `notFoundError` on `__root__`, that is
+a route rendering issue. Make sure the route that renders your component matches
+the current URL and that your root route renders an `<Outlet />`.
+
+After installation, the files are yours. You can keep the default DottoUI look,
+adjust the Tailwind classes, or compose the pieces into your own product flows.

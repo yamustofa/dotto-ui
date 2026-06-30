@@ -2,8 +2,15 @@
    DottoUI core — design tokens, Tailwind theme mapping, and the pixel utility
    language. NO `@import "tailwindcss"` here: this partial is pulled into both the
    landing entry (with preflight) and the Starlight entry (layered, no preflight)
-   so the two surfaces share one source of truth. Fonts are loaded via <link>.
+   so the two surfaces share one source of truth.
    ============================================================================ */
+
+@import "@fontsource/silkscreen/400.css";
+@import "@fontsource/silkscreen/700.css";
+@import "@fontsource/space-mono/400.css";
+@import "@fontsource/space-mono/700.css";
+@import "@fontsource/space-mono/400-italic.css";
+@import "@fontsource/space-mono/700-italic.css";
 
 /* Match the landing's `.dark` toggle AND Starlight's `[data-theme="dark"]`. */
 @custom-variant dark (&:is(.dark *, [data-theme="dark"] *, .dark, [data-theme="dark"]));

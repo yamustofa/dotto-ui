@@ -21,27 +21,6 @@ export default defineConfig({
       tagline: "A warm pixel system for gentle interfaces.",
       favicon: "/favicon.svg",
       customCss: ["./src/styles/starlight.css"],
-      head: [
-        {
-          tag: "link",
-          attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        },
-        {
-          tag: "link",
-          attrs: {
-            rel: "preconnect",
-            href: "https://fonts.gstatic.com",
-            crossorigin: true,
-          },
-        },
-        {
-          tag: "link",
-          attrs: {
-            rel: "stylesheet",
-            href: "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
-          },
-        },
-      ],
       components: {
         SiteTitle: "./src/components/starlight/SiteTitle.astro",
         Pagination: "./src/components/starlight/Pagination.astro",
@@ -53,6 +32,7 @@ export default defineConfig({
           items: [
             { label: "Overview", slug: "getting-started/overview" },
             { label: "Installation", slug: "getting-started/installation" },
+            { label: "Local development", slug: "getting-started/local-development" },
           ],
         },
         {
