@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /dotto-ui/
+
+Sitemap: https://yamustofa.github.io/dotto-ui/sitemap-index.xml

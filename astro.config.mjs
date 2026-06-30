@@ -7,11 +7,14 @@ import react from "@astrojs/react"
 import tailwindcss from "@tailwindcss/vite"
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
+const site = "https://yamustofa.github.io"
+const base = "/dotto-ui/"
+const socialImageUrl = `${site}${base}og.png`
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://yamustofa.github.io",
-  base: "/dotto-ui/",
+  site,
+  base,
   integrations: [
     react(),
     starlight({
@@ -21,6 +24,17 @@ export default defineConfig({
       tagline: "A warm pixel system for gentle interfaces.",
       favicon: "/favicon.svg",
       customCss: ["./src/styles/starlight.css"],
+      head: [
+        { tag: "meta", attrs: { property: "og:image", content: socialImageUrl } },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image:alt",
+            content: "Pixel-art blue sunflowers from the DottoUI design system",
+          },
+        },
+        { tag: "meta", attrs: { name: "twitter:image", content: socialImageUrl } },
+      ],
       components: {
         SiteTitle: "./src/components/starlight/SiteTitle.astro",
         Pagination: "./src/components/starlight/Pagination.astro",

@@ -26,6 +26,11 @@ import { Lightbulb } from "pixelarticons/react/Lightbulb"
 
 const base = import.meta.env.BASE_URL
 const docsUrl = `${base}getting-started/overview/`
+const canonicalUrl = `https://yamustofa.github.io${base}`
+const siteTitle = "DottoUI - cozy pixel UI kit"
+const siteDescription =
+  "A gentle pixel-art component system built on Tailwind v4 and shadcn/ui: cream paper, navy ink, cornflower blues, stepped corners."
+const socialImageUrl = `https://yamustofa.github.io${base}og.png`
 
 const footerLinks = [
   { label: "Source", href: "https://github.com/yamustofa/dotto-ui", icon: GitBranch, external: true },
@@ -73,11 +78,25 @@ const systemMap = [
       document.documentElement.setAttribute("data-theme", theme)
     </script>
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <title>DottoUI — a cozy pixel UI kit</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href={`${base}sitemap-index.xml`} />
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
     <meta
-      name="description"
-      content="A gentle pixel-art component system built on Tailwind v4 and shadcn/ui: cream paper, navy ink, cornflower blues, stepped corners."
+      property="og:image:alt"
+      content="Pixel-art blue sunflowers from the DottoUI design system"
     />
+    <meta property="og:site_name" content="DottoUI" />
+    <meta property="og:locale" content="en" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={socialImageUrl} />
   </head>
   <body class="min-h-screen bg-background text-foreground">
     <header
@@ -122,7 +141,7 @@ const systemMap = [
           <h1
             class="m-0 max-w-2xl font-display text-6xl uppercase leading-[0.86] sm:text-7xl lg:text-8xl"
           >
-            Build in Pixels
+            DottoUI Pixel UI Kit
           </h1>
           <p
             class="mt-6 max-w-xl font-mono text-base leading-relaxed text-muted-foreground sm:text-lg"
@@ -150,6 +169,8 @@ const systemMap = [
             alt="Pixel-art illustration of three blue sunflowers"
             widths={[480, 768, 1536]}
             sizes="(max-width: 1024px) 100vw, 50vw"
+            loading="eager"
+            fetchpriority="high"
             class="h-auto w-full"
           />
           <div class="absolute right-1 top-1 sm:right-3 sm:top-3">
