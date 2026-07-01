@@ -30,7 +30,7 @@ const canonicalUrl = `https://yamustofa.github.io${base}`
 const siteTitle = "DottoUI - cozy pixel UI kit"
 const siteDescription =
   "A gentle pixel-art component system built on Tailwind v4 and shadcn/ui: cream paper, navy ink, cornflower blues, stepped corners."
-const socialImageUrl = `https://yamustofa.github.io${base}og.png`
+const socialImageUrl = `https://yamustofa.github.io${base}og.jpg`
 
 const footerLinks = [
   { label: "Source", href: "https://github.com/yamustofa/dotto-ui", icon: GitBranch, external: true },
@@ -87,6 +87,8 @@ const systemMap = [
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
       content="Pixel-art blue sunflowers from the DottoUI design system"

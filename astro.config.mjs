@@ -9,7 +9,7 @@ import tailwindcss from "@tailwindcss/vite"
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const site = "https://yamustofa.github.io"
 const base = "/dotto-ui/"
-const socialImageUrl = `${site}${base}og.png`
+const socialImageUrl = `${site}${base}og.jpg`
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,6 +26,8 @@ export default defineConfig({
       customCss: ["./src/styles/starlight.css"],
       head: [
         { tag: "meta", attrs: { property: "og:image", content: socialImageUrl } },
+        { tag: "meta", attrs: { property: "og:image:width", content: "1200" } },
+        { tag: "meta", attrs: { property: "og:image:height", content: "630" } },
         {
           tag: "meta",
           attrs: {
